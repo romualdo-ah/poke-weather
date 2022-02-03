@@ -57,15 +57,24 @@ export default function Home() {
       if (random_pokemon.name !== pokemon.name) {
         
         // let pokemon_img = Pokemon.getSprite(random_pokemon.pokemon.name);
-        let pokemon_img = Pokemon.getSprite(random_pokemon.name);
-        
-        console.log(random_pokemon.name);
-        setPokemon({
-          name:random_pokemon.name,
-          type:pokemon_type,
-          img:pokemon_img});
-        break;
-      }
+        try{
+
+          let pokemon_img = Pokemon.getSprite(random_pokemon.name);
+          
+          console.log(random_pokemon.name);
+          setPokemon({
+            name:random_pokemon.name,
+            type:pokemon_type,
+            img:pokemon_img});
+            break;
+          }
+          catch(err){
+            setPokemon({
+              name:random_pokemon.name,
+              type:pokemon_type,
+              img:"/pokeball.png"});
+            }
+        }
 
 
     }
@@ -143,7 +152,6 @@ export default function Home() {
                 type: {pokemon.type}
             </span>
             {pokemon.img && <Image src={pokemon.img} width={200} height={200} alt={pokemon.img}/>}
-            {/* <Image src={pokemon.img} width={200} height={200} alt={pokemon.name}/> */}
         </div>
             )}
       </div>
